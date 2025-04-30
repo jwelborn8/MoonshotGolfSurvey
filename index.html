@@ -1,80 +1,67 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Team Scramble Golf Survey</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Golf Scramble Survey</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 50px auto;
-      max-width: 600px;
+      padding: 2rem;
+      background: #f4f4f4;
     }
-    h2 {
-      text-align: center;
+    form {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     label {
       display: block;
-      margin-top: 15px;
+      margin-top: 1rem;
+      font-weight: bold;
     }
-    input {
+    input, button {
       width: 100%;
-      padding: 8px;
-      margin-top: 5px;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
     }
     button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      display: block;
-      width: 100%;
+      background-color: #007bff;
+      color: white;
+      margin-top: 1.5rem;
+      border: none;
+      cursor: pointer;
     }
-    #message {
-      margin-top: 20px;
-      font-weight: bold;
-      text-align: center;
+    button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <h2>Team Scramble Golf Survey</h2>
-  <form id="golfForm">
-    <label>Name:
-      <input name="name" required>
-    </label>
-    <label>Course:
-      <input name="course" required>
-    </label>
-    <label>Amount Paid:
-      <input name="amount" required>
-    </label>
-    <label>Guest:
-      <input name="guest" required>
-    </label>
+
+  <form action="https://script.google.com/macros/s/AKfycbxhRSKKd0nLLmayJSseV1POUdmQM18nHv0CbgQR5DCN99W9yk47sFQ45UVLeMXA50Nh/exec" method="POST">
+    <h2>Golf Scramble Interest Form</h2>
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" required />
+
+    <label for="course">Nearest Course to You:</label>
+    <input type="text" name="course" id="course" required />
+
+    <label for="amount">Amount You'd Like to Pay:</label>
+    <input type="text" name="amount" id="amount" required />
+
+    <label for="guest">Will You Bring a Guest?</label>
+    <input type="text" name="guest" id="guest" required />
+
     <button type="submit">Submit</button>
   </form>
-  <p id="message"></p>
 
-  <script>
-    document.getElementById("golfForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const form = e.target;
-      const data = new URLSearchParams(new FormData(form));
-
-      fetch("https://script.google.com/macros/s/AKfycbxhRSKKd0nLLmayJSseV1POUdmQM18nHv0CbgQR5DCN99W9yk47sFQ45UVLeMXA50Nh/exec", {
-        method: "POST",
-        body: data
-      })
-      .then(res => res.text())
-      .then(text => {
-        document.getElementById("message").textContent = "Submitted successfully!";
-        form.reset();
-      })
-      .catch(err => {
-        document.getElementById("message").textContent = "Error submitting form.";
-        console.error(err);
-      });
-    });
-  </script>
 </body>
 </html>
